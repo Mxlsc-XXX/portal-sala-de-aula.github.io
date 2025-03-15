@@ -15,7 +15,7 @@ let tipoAtual = '';
 let modoEdicao = false;
 
 // Configuração de autenticação
-const CODIGO_ACESSO = '123456'; // Você pode alterar este código
+const CODIGO_ACESSO = 'Lider93478'; // Você pode alterar este código
 const CHAVE_ESTADO = 'portalSala';
 const CHAVE_AUTENTICACAO = 'portalSalaAuth';
 
