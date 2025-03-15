@@ -86,7 +86,7 @@ function abrirModalLogin() {
 }
 
 function verificarAcesso() {
-    const codigo = document.getElementById('codigoAcesso').value;
+    codigo = document.getElementById('codigoAcesso').value;
     if (codigo === CODIGO_ACESSO) {
         ativarModoEdicao();
         localStorage.setItem(CHAVE_AUTENTICACAO, 'true');
