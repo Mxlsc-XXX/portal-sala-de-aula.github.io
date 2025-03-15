@@ -86,7 +86,7 @@ function abrirModalLogin() {
 }
 
 function verificarAcesso() {
-    codigo = document.getElementById('codigoAcesso').value;
+    const codigo = document.getElementById('codigoAcesso').value;
     if (codigo === CODIGO_ACESSO) {
         ativarModoEdicao();
         localStorage.setItem(CHAVE_AUTENTICACAO, 'true');
@@ -100,30 +100,30 @@ function ativarModoEdicao() {
     modoEdicao = true;
     document.body.classList.remove('modo-visualizacao');
     
+    // Mostrar botões de edição
+    document.querySelectorAll('.modo-edicao').forEach(btn => {
+        btn.style.display = 'block'; // Mostra os botões
+    });
+
     // Atualizar botão desktop
     const btnLogin = document.getElementById('btnLogin');
     btnLogin.classList.add('modo-edicao');
     btnLogin.innerHTML = '<i class="bi bi-key"></i> Sair do Modo Edição';
-    
-    // Atualizar botão mobile
-    const btnLoginMobile = document.getElementById('btnLoginMobile');
-    btnLoginMobile.classList.add('modo-edicao');
-    btnLoginMobile.innerHTML = '<i class="bi bi-key"></i>';
 }
 
 function desativarModoEdicao() {
     modoEdicao = false;
     document.body.classList.add('modo-visualizacao');
     
+    // Ocultar botões de edição
+    document.querySelectorAll('.modo-edicao').forEach(btn => {
+        btn.style.display = 'none'; // Oculta os botões
+    });
+
     // Atualizar botão desktop
     const btnLogin = document.getElementById('btnLogin');
     btnLogin.classList.remove('modo-edicao');
     btnLogin.innerHTML = '<i class="bi bi-key"></i> Modo Edição';
-    
-    // Atualizar botão mobile
-    const btnLoginMobile = document.getElementById('btnLoginMobile');
-    btnLoginMobile.classList.remove('modo-edicao');
-    btnLoginMobile.innerHTML = '<i class="bi bi-key"></i>';
     
     localStorage.removeItem(CHAVE_AUTENTICACAO);
 }
@@ -181,7 +181,6 @@ function criarCard(item, tipo, index) {
             <a href="${item.arquivo}" class="arquivo-link" target="_blank" download="${item.titulo}">
                 <i class="bi bi-file-earmark"></i> ${item.titulo}
             </a>
-
         `;
     }
     
