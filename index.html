@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal da Sala</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Portal da Sala</a>
+            <button class="btn btn-outline-light d-lg-none me-2" id="btnLoginMobile" onclick="abrirModalLogin()">
+                <i class="bi bi-key"></i>
+            </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trabalhos">Trabalhos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#datas">Datas Importantes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#apps">Apps de Revisão</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#guias">Guias de Estudo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#planilhas">Planilhas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#avisos">Avisos</a>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-light d-lg-flex" id="btnLogin" onclick="abrirModalLogin()">
+
+                    <i class="bi bi-key"></i> Modo Edição
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-key-fill me-2"></i>
+                        Acesso ao Modo Edição
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label class="form-label">Código de Acesso</label>
+                        <input type="password" class="form-control" id="codigoAcesso" 
+                               placeholder="Digite o código de acesso"
+                               onkeypress="if(event.key === 'Enter') verificarAcesso()">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg me-2"></i>
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg px-4" onclick="verificarAcesso()">
+                        <i class="bi bi-unlock me-2"></i>
+                        Acessar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <section id="trabalhos" class="mb-5">
+            <h2><i class="bi bi-journal-text"></i> Trabalhos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="trabalhos-lista">
+                        <!-- Trabalhos serão adicionados dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarTrabalho()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Trabalho
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="datas" class="mb-5">
+            <h2><i class="bi bi-calendar-event"></i> Datas Importantes</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="datas-lista">
+                        <!-- Datas serão adicionadas dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarData()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Data
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="apps" class="mb-5">
+            <h2><i class="bi bi-phone"></i> Apps de Revisão</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="apps-lista">
+                        <!-- Apps serão adicionados dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarApp()">
+                        <i class="bi bi-plus-circle"></i> Adicionar App
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="guias" class="mb-5">
+            <h2><i class="bi bi-book"></i> Guias de Estudo</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="guias-lista">
+                        <!-- Guias serão adicionados dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarGuia()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Guia
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="planilhas" class="mb-5">
+            <h2><i class="bi bi-table"></i> Planilhas das Aulas</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="planilhas-lista">
+                        <!-- Planilhas serão adicionadas dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarPlanilha()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Planilha
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="avisos" class="mb-5">
+            <h2><i class="bi bi-megaphone"></i> Avisos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="avisos-lista">
+                        <!-- Avisos serão adicionados dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarAviso()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Aviso
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para adicionar itens -->
+    <div class="modal fade" id="itemModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="itemForm">
+                        <div class="mb-3">
+                            <label class="form-label">Título</label>
+                            <input type="text" class="form-control" id="itemTitulo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control" id="itemDescricao" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Data (se aplicável)</label>
+                            <input type="date" class="form-control" id="itemData">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Link (se aplicável)</label>
+                            <input type="url" class="form-control" id="itemLink">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Imagem</label>
+                            <input type="file" class="form-control" id="itemImagem" accept="image/*">
+                            <div id="imagemPreview" class="mt-2"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Arquivo</label>
+                            <input type="file" class="form-control" id="itemArquivo">
+                            <div id="arquivoPreview" class="mt-2"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="salvarItem()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
