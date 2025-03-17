@@ -7,7 +7,7 @@
     --danger-color: #e74c3c;
     --text-color: #2c3e50;
     --border-radius: 12px;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -15,49 +15,50 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
-    border-top-left-radius:0px;
-    border-bottom-left-radius:8px;
-    border-bottom-right-radius:8px;
-    transform:translatex(0px) translatey(0px);
-    background-color:#0b008e !important;
+    border-radius: 0 8px 8px 8px;
+    background-color: #0b008e !important;
+    padding: 1rem;
 }
 
 section {
     background-color: var(--card-background);
     border-radius: var(--border-radius);
-    padding: 30px; /* Aumentado para mais espaço */
+    padding: 25px;
     box-shadow: var(--box-shadow);
     margin-bottom: 2rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 section:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card {
     border: none;
     box-shadow: var(--box-shadow);
-    transition: all 0.3s ease;
     border-radius: var(--border-radius);
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), #2980b9);
     border: none;
     padding: 0.8rem 1.5rem;
-    transition: all 0.3s ease;
     border-radius: 8px;
     font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -70,10 +71,8 @@ section:hover {
     margin-bottom: 1.5rem;
     border-left: 5px solid var(--primary-color);
     background: linear-gradient(to right, rgba(74, 144, 226, 0.05), transparent);
-}
-
-.item-card .card-body {
     padding: 1.5rem;
+    border-radius: var(--border-radius);
 }
 
 .item-card h5 {
@@ -93,13 +92,14 @@ section:hover {
     border-radius: var(--border-radius);
     border: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
 .form-control {
     border-radius: 8px;
     padding: 0.8rem;
     border: 2px solid #e9ecef;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-control:focus {
@@ -107,16 +107,7 @@ section:hover {
     box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
 }
 
-/* Estilos para arquivos e imagens */
-.arquivo-preview {
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 8px;
-    margin: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.imagem-preview {
+.arquivo-preview, .imagem-preview {
     max-width: 100%;
     max-height: 300px;
     border-radius: 8px;
@@ -124,7 +115,6 @@ section:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -134,33 +124,27 @@ section:hover {
         padding: 20px;
     }
     
-    h2 {
-        font-size: 1.5rem;
-    }
-    
-    .navbar-brand {
+    h2, .navbar-brand {
         font-size: 1.5rem;
     }
 }
 
-/* Ocultar botões no modo de visualização */
 .modo-edicao {
-    display: none; /* Oculta por padrão */
+    display: none;
 }
 
-/* Estilos para as novas seções */
 #respostas, #monitoria {
-    background-color: var(--card-background); /* Cor de fundo leve */
+    background-color: var(--card-background);
 }
 
 #respostas h2, #monitoria h2 {
-    color: var(--primary-color); /* Cor do título */
+    color: var(--primary-color);
 }
 
-/* Adicione no seu arquivo CSS */
 .respostas-container {
     border-top: 1px solid #ddd;
     margin-top: 1rem;
+    padding-top: 1rem;
 }
 
 .resposta {
@@ -172,8 +156,11 @@ section:hover {
 
 .resposta small {
     font-size: 0.8em;
+    color: var(--secondary-color);
 }
 
 .modo-monitor {
-    background-color: #7bc1ff; /* Cor de fundo diferente para o modo monitor */
+    background-color: #7bc1ff;
+    padding: 1rem;
+    border-radius: var(--border-radius);
 }
