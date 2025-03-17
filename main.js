@@ -69,6 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+atualizarPagina();
+
 async function carregarDadosDoJSONBin() {
     try {
         const response = await fetch('https://api.jsonbin.io/v3/b/67d87de58561e97a50edfb77', {
