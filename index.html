@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal da Sala</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#">Portal da Sala</a>
+            <a class="navbar-brand" href="#">PORTAL DA SALA</a>
+            <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="carregarDadosDoJSONBin()">
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
             <button class="btn btn-outline-light d-lg-none me-2" id="btnLoginMobile" onclick="abrirModalLogin()">
                 <i class="bi bi-key"></i>
             </button>
@@ -20,6 +23,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#avisos">Avisos</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#trabalhos">Trabalhos</a>
                     </li>
@@ -35,12 +41,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#planilhas">Planilhas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#avisos">Avisos</a>
-                    </li>
                 </ul>
+                <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="carregarDadosDoJSONBin()">
+                    <i class="bi bi-arrow-clockwise"></i> Recarregar
+                </button>
                 <button class="btn btn-outline-light d-lg-flex" id="btnLogin" onclick="abrirModalLogin()">
-                    <i class="bi bi-key"></i> Modo Edição
+                    <i class="bi bi-key"></i> Modo Edição/Monitor
                 </button>
             </div>
         </div>
@@ -53,7 +59,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">
                         <i class="bi bi-key-fill me-2"></i>
-                        Acesso ao Modo Edição
+                        Acesso ao Modo Edição/Monitor
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
@@ -79,7 +85,24 @@
         </div>
     </div>
 
+
+    
     <div class="container mt-4">
+
+        <section id="avisos" class="mb-5">
+            <h2><i class="bi bi-megaphone"></i> Avisos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="avisos-lista">
+                        <!-- Avisos serão adicionados dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-3 modo-edicao" onclick="adicionarAviso()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Aviso
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <section id="trabalhos" class="mb-5">
             <h2><i class="bi bi-journal-text"></i> Trabalhos</h2>
             <div class="card">
@@ -150,22 +173,41 @@
             </div>
         </section>
 
-        <section id="avisos" class="mb-5">
-            <h2><i class="bi bi-megaphone"></i> Avisos</h2>
+        <section id="respostas" class="mb-5">
+            <h2><i class="bi bi-check-circle"></i> Respostas do TarefasSP</h2>
             <div class="card">
                 <div class="card-body">
-                    <div id="avisos-lista">
-                        <!-- Avisos serão adicionados dinamicamente -->
+                    <div id="respostas-lista">
                     </div>
-                    <button class="btn btn-primary mt-3 modo-edicao" onclick="adicionarAviso()">
-                        <i class="bi bi-plus-circle"></i> Adicionar Aviso
+                    <button class="btn btn-primary mt-3" onclick="adicionarResposta()">
+                        <i class="bi bi-plus-circle"></i> Adicionar Resposta
                     </button>
                 </div>
             </div>
         </section>
+        
+        <section id="monitoria" class="mb-5">
+            <h2><i class="bi bi-chat-dots"></i> Monitoria</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="monitoria-lista">
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="adicionarPergunta()">
+                        <i class="bi bi-plus-circle"></i> Fazer Pergunta
+                    </button>
+                    <button class="btn btn-secondary mt-3" onclick="inscreverComoMonitor()">
+                        <i class="bi bi-person-plus"></i> Inscrever como Monitor
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section id="recarregar" class="mb-5">
+            <h2><i class="bi bi-arrow-clockwise"></i> Recarregar Dados</h2>
+            <button class="btn btn-secondary mt-3" onclick="carregarDadosDoJSONBin()">Recarregar Dados</button>
+        </section>
+    </section>
     </div>
 
-    <!-- Modal para adicionar itens -->
     <div class="modal fade" id="itemModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -180,24 +222,24 @@
                             <input type="text" class="form-control" id="itemTitulo" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Descrição</label>
+                            <label class="form-label">Descrição(opcional)</label>
                             <textarea class="form-control" id="itemDescricao" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Data (se aplicável)</label>
+                            <label class="form-label">Data (opcional)</label>
                             <input type="date" class="form-control" id="itemData">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Link (se aplicável)</label>
+                            <label class="form-label">Link (opcional)</label>
                             <input type="url" class="form-control" id="itemLink">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Imagem</label>
+                            <label class="form-label">Imagem(opcional)</label>
                             <input type="file" class="form-control" id="itemImagem" accept="image/*">
                             <div id="imagemPreview" class="mt-2"></div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Arquivo</label>
+                            <label class="form-label">Arquivo(opcional)</label>
                             <input type="file" class="form-control" id="itemArquivo">
                             <div id="arquivoPreview" class="mt-2"></div>
                         </div>
@@ -205,13 +247,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="salvarItem()">Salvar</button>
+                    <button type="button" class="btn btn-primary" id="botaoSalvar" onclick="salvarItem()">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

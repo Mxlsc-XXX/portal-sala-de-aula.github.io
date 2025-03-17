@@ -28,9 +28,7 @@ Apenas abra o link enviado no nosso grupo.
 ```
 .
 ├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── main.js
+├── style.css
+├── main.js
 └── README.md
 ```

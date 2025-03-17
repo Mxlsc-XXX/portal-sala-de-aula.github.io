@@ -147,3 +147,33 @@ section:hover {
 .modo-edicao {
     display: none; /* Oculta por padrão */
 }
+
+/* Estilos para as novas seções */
+#respostas, #monitoria {
+    background-color: var(--card-background); /* Cor de fundo leve */
+}
+
+#respostas h2, #monitoria h2 {
+    color: var(--primary-color); /* Cor do título */
+}
+
+/* Adicione no seu arquivo CSS */
+.respostas-container {
+    border-top: 1px solid #ddd;
+    margin-top: 1rem;
+}
+
+.resposta {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+}
+
+.resposta small {
+    font-size: 0.8em;
+}
+
+.modo-monitor {
+    background-color: #7bc1ff; /* Cor de fundo diferente para o modo monitor */
+}
