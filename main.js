@@ -34,8 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('modo-visualizacao');
     }
     
-    atualizarPagina();
-    
     // Configurar preview de imagem
     const itemImagem = document.getElementById('itemImagem');
     const itemArquivo = document.getElementById('itemArquivo');
