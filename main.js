@@ -532,3 +532,25 @@ async function removerItem(tipo, index) {
 function formatarData(data) {
     return new Date(data).toLocaleDateString('pt-BR');
 }
+
+function cancelarLogin() {
+    document.getElementById('blurBackground').style.display = 'none'; // Oculta o fundo desfocado
+    document.getElementById('loginPanel').style.display = 'none'; // Oculta a tela de login
+}
+
+function acessar() {
+    // Obtém os valores dos campos de entrada
+    const ra = document.getElementById('ra').value;
+    const digito = document.getElementById('digito').value;
+    const senha = document.getElementById('senha').value;
+
+    // Verifica se os valores correspondem aos esperados
+    if (ra === '110887038' && digito === '7' && senha === 'arv') {
+        cancelarLogin();
+    } else {
+        // Se a autenticação falhar, exibe uma mensagem de erro
+        alert('RA, dígito ou senha incorretos. Tente novamente.');
+    }
+}
+carregarDadosDoJSONBin();
+renderizarTodos();
