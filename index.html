@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="#">PORTAL DA SALA</a>
-            <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="carregarDadosDoJSONBin()">
+            <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="atualizarPagina()">
                 <i class="bi bi-arrow-clockwise"></i>
             </button>
             <button class="btn btn-outline-light d-lg-none me-2" id="btnLoginMobile" onclick="abrirModalLogin()">
@@ -42,7 +42,7 @@
                         <a class="nav-link" href="#planilhas">Planilhas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="carregarDadosDoJSONBin()">
+                <button class="btn btn-outline-light me-2" id="botaoRecarregar" onclick="atualizarPagina()">
                     <i class="bi bi-arrow-clockwise"></i> Recarregar
                 </button>
                 <button class="btn btn-outline-light d-lg-flex" id="btnLogin" onclick="abrirModalLogin()">
@@ -83,6 +83,25 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Tela de Login com Blur -->
+    <div class="blur-background" id="blurBackground"></div>
+    <div class="login-panel" id="loginPanel">
+        <h2>Acesso ao Portal</h2>
+        <form id="loginForm" onsubmit="return false;">
+            <div class="mb-3 text-center">
+                <label for="ra" class="form-label">RA</label>
+                <div class="d-flex justify-content-center">
+                    <input type="text" class="form-control me-2" id="ra" required style="flex: 1;">
+                    <input type="text" class="form-control" id="digito" maxlength="1" required style="width: 50px;">
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" required>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="acessar()" style="width: 100%;">Acessar</button>
+        </form>
     </div>
 
 
