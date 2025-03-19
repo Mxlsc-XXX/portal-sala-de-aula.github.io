@@ -32,6 +32,7 @@ section {
     box-shadow: var(--box-shadow);
     margin-bottom: 2rem;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    backdrop-filter: blur(10px)z
 }
 
 section:hover {
@@ -163,4 +164,44 @@ section:hover {
     background-color: #7bc1ff;
     padding: 1rem;
     border-radius: var(--border-radius);
+}
+
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px); /* Aplica o efeito de desfoque */
+    z-index: 1;
+}
+
+.login-panel {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    width: 300px;
+    text-align: center;
+    position: fixed; /* Para centralizar */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
+}
+
+.text-center {
+    text-align: center; /* Centraliza o texto */
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 0.8rem;
+    border: 2px solid #e9ecef;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
 }
