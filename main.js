@@ -547,7 +547,7 @@ function acessar() {
     // Verifica se os valores correspondem aos esperados
     if (ra === '110887038' && digito === '7' && senha === 'arv') {
         cancelarLogin();
-        renderizarTodos();
+        atualizarPagina();
     } else {
         // Se a autenticação falhar, exibe uma mensagem de erro
         alert('RA, dígito ou senha incorretos. Tente novamente.');
