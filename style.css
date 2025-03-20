@@ -32,7 +32,7 @@ section {
     box-shadow: var(--box-shadow);
     margin-bottom: 2rem;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    filter: blur(10px)z
+    backdrop-filter: blur(10px)z
 }
 
 section:hover {
@@ -172,7 +172,7 @@ section:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    filter: blur(8px); /* Aplica o efeito de desfoque */
+    backdrop-filter: blur(8px); /* Aplica o efeito de desfoque */
     z-index: 1;
 }
 
