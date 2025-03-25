@@ -575,19 +575,33 @@ function cancelarLogin() {
     document.getElementById('loginPanel').style.display = 'none'; // Oculta a tela de login
 }
 
-function acessar() {
-    // Obtém os valores dos campos de entrada
-    const ra = document.getElementById('ra').value;
-    const digito = document.getElementById('digito').value;
-    const senha = document.getElementById('senha').value;
+async function acessar() {
+    try {
+        const response = await fetch('https://api.jsonbin.io/v3/b/67db7e998561e97a50ef74cc', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Master-Key': '$2a$10$HQGRW2f7cor8XO9DyhyVo.ww1bbpBu/XQ0YCVbZUcyj/k51fOSK4u'
+            }
+        });
+        if (!response.ok) throw new Error('Erro ao carregar dados: ' + response.statusText);
+        const data = await response.json();
+        const usuarios = data.record.usuarios;
 
-    // Verifica se os valores correspondem aos esperados
-    if (ra === '110887038' && digito === '7' && senha === 'arv') {
-        cancelarLogin();
-        carregarDadosDoJSONBin(); // Adicione esta linha
-    } else {
-        // Se a autenticação falhar, exibe uma mensagem de erro
-        alert('RA, dígito ou senha incorretos. Tente novamente.');
+        const ra = document.getElementById('ra').value;
+        const digito = document.getElementById('digito').value;
+        const senha = document.getElementById('senha').value;
+
+        const usuario = usuarios.find(user => user.ra === ra && user.digito === digito && user.senha === senha);
+        
+        if (usuario) {
+            cancelarLogin();
+            carregarDadosDoJSONBin(); // Carrega os dados após autenticação bem-sucedida
+        } else {
+            alert('RA, dígito ou senha incorretos. Tente novamente.');
+        }
+    } catch (error) {
+        console.error('Erro ao verificar acesso:', error);
     }
 }
 carregarDadosDoJSONBin();
