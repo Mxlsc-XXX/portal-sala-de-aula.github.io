@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('modo-visualizacao');
     }
     
+    
     // Configurar preview de imagem
     const itemImagem = document.getElementById('itemImagem');
     const itemArquivo = document.getElementById('itemArquivo');
@@ -52,8 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (botaoSalvar) {
-        botaoSalvar.removeEventListener('click', salvarItem); // Remove o evento anterior
-        botaoSalvar.addEventListener('click', salvarItem); // Adiciona o evento
+        // Remover todos os ouvintes de eventos antes de adicionar um novo
+        const newButton = botaoSalvar.cloneNode(true);
+        botaoSalvar.parentNode.replaceChild(newButton, botaoSalvar);
+        newButton.addEventListener('click', salvarItem); // Adiciona o evento
     } else {
         console.error("Elemento 'botaoSalvar' não encontrado.");
     }
@@ -61,11 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adiciona evento para o botão de recarregar
     const botaoRecarregar = document.getElementById('botaoRecarregar');
     if (botaoRecarregar) {
-        botaoRecarregar.addEventListener('click', atualizarPagina);
+        botaoRecarregar.addEventListener('click', carregarDadosDoJSONBin);
     } else {
         console.error("Elemento 'botaoRecarregar' não encontrado.");
     }
+
+    // Carregar dados do JSONBin ao iniciar
+    carregarDadosDoJSONBin(); // Adicione esta linha
 });
+
+
 async function carregarDadosDoJSONBin() {
     try {
         const response = await fetch('https://api.jsonbin.io/v3/b/67d87de58561e97a50edfb77', {
@@ -78,6 +86,9 @@ async function carregarDadosDoJSONBin() {
         if (!response.ok) throw new Error('Erro ao carregar dados: ' + response.statusText);
         const data = await response.json();
         estado = data.record; // Atualiza o estado com os dados carregados
+        
+        // Chama a função para renderizar os dados
+        renderizarTodos(); // Adicione esta linha
     } catch (error) {
         console.error('Erro ao carregar dados:', error);
     }
@@ -98,11 +109,6 @@ async function salvarDadosNoJSONBin() {
     } catch (error) {
         console.error('Erro ao salvar dados:', error);
     }
-}
-
-function atualizarPagina() {
-    carregarDadosDoJSONBin();
-    renderizarTodos();
 }
 
 // Funções de preview
@@ -249,21 +255,6 @@ async function carregarDados() {
     }
 }
 
-function salvarDados() {
-    const dados = JSON.stringify(estado);
-    // Salvar os dados no arquivo JSON
-    fetch('salvarDados.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: dados
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Erro ao salvar dados: ' + response.statusText);
-    })
-    .catch(error => console.error('Erro ao salvar dados:', error));
-}
 
 // Funções de renderização
 function renderizarTodos() {
@@ -281,10 +272,9 @@ function renderizarLista(tipo) {
     const container = document.getElementById(`${tipo}-lista`);
     container.innerHTML = '';
 
-    // Verifique se o tipo existe e é um array
     if (!Array.isArray(estado[tipo])) {
         console.error('Tipo inválido ou não inicializado:', tipo);
-        estado[tipo] = []; // Inicializa como um array vazio
+        estado[tipo] = [];
     }
 
     estado[tipo].forEach((item, index) => {
@@ -312,7 +302,37 @@ function renderizarLista(tipo) {
 
             card.querySelector('.card-body').appendChild(respostasContainer);
         }
+
+        // Adiciona o botão de responder para Dúvidas
+        if (tipo === 'respostas') {
+            const btnResponder = document.createElement('button');
+            btnResponder.className = 'btn btn-sm btn-primary float-end';
+            btnResponder.innerText = 'Responder';
+            btnResponder.onclick = () => responderDuvida(index);
+            card.querySelector('.card-body').appendChild(btnResponder);
+        }
     });
+}
+
+function responderDuvida(index) {
+    const resposta = prompt("Digite sua resposta:");
+    if (resposta) {
+        const novaResposta = {
+            texto: resposta,
+            data: new Date().toISOString(),
+            autor: 'Usuário' // Pode capturar o nome real se necessário
+        };
+
+        if (!estado.respostas[index]) {
+            console.error('Índice inválido:', index);
+            return;
+        }
+
+        estado.respostas[index].respostas = estado.respostas[index].respostas || [];
+        estado.respostas[index].respostas.push(novaResposta);
+        salvarDadosNoJSONBin();
+        renderizarLista('respostas');
+    }
 }
 
 function criarCard(item, tipo, index) {
@@ -366,8 +386,6 @@ function criarCard(item, tipo, index) {
     conteudo += '</div>';
     div.innerHTML = conteudo;
     return div;
-
-    atualizarPagina();
 }
 
 function responderPergunta(index) {
@@ -400,7 +418,7 @@ function adicionarPergunta() {
 }
 
 // Modifique a função de adicionar resposta
-function adicionarResposta() {
+function PerguntarTarefas() {
     tipoAtual = 'respostas';
     // Limpar campos não relevantes
     document.getElementById('itemData').value = '';
@@ -457,8 +475,9 @@ function abrirModalItem() {
 }
 
 async function salvarItem() {
+    console.log("salvarItem chamado"); // Adicione esta linha
     const botaoSalvar = document.getElementById('botaoSalvar');
-    botaoSalvar.disabled = true; // Desabilita o botão
+    botaoSalvar.disabled = true; // Desabilita o botão // Desabilita o botão
 
     const titulo = document.getElementById('itemTitulo').value;
     const descricao = document.getElementById('itemDescricao').value;
@@ -473,7 +492,6 @@ async function salvarItem() {
         return;
     }
 
-    // Verificar se o item já existe
     const itemExistente = estado[tipoAtual].find(item => item.titulo === titulo);
     if (itemExistente) {
         botaoSalvar.disabled = false; // Reabilita o botão
@@ -492,7 +510,7 @@ async function salvarItem() {
 
     const processarArquivos = async () => {
         if (imagemInput.files[0]) {
-            novoItem.imagem = await lerArquivo(imagemInput.files[0]);
+            novoItem.imagem = await enviarImagemParaImgBB(imagemInput.files[0]);
         }
         if (arquivoInput.files[0]) {
             novoItem.arquivo = await lerArquivo(arquivoInput.files[0]);
@@ -501,7 +519,6 @@ async function salvarItem() {
         console.log("Novo item após processar arquivos:", novoItem);
         
         estado[tipoAtual].push(novoItem); // Adiciona uma única vez
-        salvarDados();
         await salvarDadosNoJSONBin(); // Salva no JSONBin
         renderizarLista(tipoAtual); // Renderiza apenas uma vez
         modalItem.hide();
@@ -509,6 +526,27 @@ async function salvarItem() {
     };
 
     await processarArquivos();
+}
+
+async function enviarImagemParaImgBB(file) {
+    const apiKey = '49fcba45d38e8e3758acaf8fac93f708'; // Substitua pela sua chave de API do ImgBB
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) throw new Error('Erro ao enviar imagem: ' + response.statusText);
+        
+        const data = await response.json();
+        return data.data.url; // Retorna a URL da imagem
+    } catch (error) {
+        console.error('Erro ao enviar imagem:', error);
+        return null; // Retorna null em caso de erro
+    }
 }
 
 function lerArquivo(file) {
@@ -522,7 +560,6 @@ function lerArquivo(file) {
 async function removerItem(tipo, index) {
     if (confirm('Tem certeza que deseja remover este item?')) {
         estado[tipo].splice(index, 1);
-        salvarDados();
         await salvarDadosNoJSONBin();
         renderizarLista(tipo);
     }
@@ -547,7 +584,7 @@ function acessar() {
     // Verifica se os valores correspondem aos esperados
     if (ra === '110887038' && digito === '7' && senha === 'arv') {
         cancelarLogin();
-        atualizarPagina();
+        carregarDadosDoJSONBin(); // Adicione esta linha
     } else {
         // Se a autenticação falhar, exibe uma mensagem de erro
         alert('RA, dígito ou senha incorretos. Tente novamente.');
