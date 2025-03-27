@@ -97,15 +97,21 @@ async function carregarDadosDoMockAPI() {
 }
 
 async function salvarDadosNoMockAPI() {
+    console.log("Estado antes de salvar:", estado); // Para depuração
     try {
-        const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/estado', {
-            method: 'PUT',
+        const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/estado/1', {
+            method: 'PUT', // ou 'PATCH' se preferir
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(estado)
+            body: JSON.stringify(estado) // Envia o objeto estado
         });
-        if (!response.ok) throw new Error('Erro ao salvar dados: ' + response.statusText);
+
+        if (!response.ok) {
+            const errorData = await response.json(); // Captura a resposta de erro
+            throw new Error('Erro ao salvar dados: ' + errorData.message);
+        }
+
         console.log('Dados salvos com sucesso');
     } catch (error) {
         console.error('Erro ao salvar dados:', error);
