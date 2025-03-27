@@ -64,43 +64,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adiciona evento para o botão de recarregar
     const botaoRecarregar = document.getElementById('botaoRecarregar');
     if (botaoRecarregar) {
-        botaoRecarregar.addEventListener('click', carregarDadosDoJSONBin);
+        botaoRecarregar.addEventListener('click', carregarDadosDoMockAPI);
     } else {
         console.error("Elemento 'botaoRecarregar' não encontrado.");
     }
 
     // Carregar dados do JSONBin ao iniciar
-    carregarDadosDoJSONBin(); // Adicione esta linha
+    carregarDadosDoMockAPI(); // Adicione esta linha
 });
 
 
-async function carregarDadosDoJSONBin() {
+async function carregarDadosDoMockAPI() {
     try {
-        const response = await fetch('https://api.jsonbin.io/v3/b/67d87de58561e97a50edfb77', {
+        const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/estado', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'X-Master-Key': '$2a$10$HQGRW2f7cor8XO9DyhyVo.ww1bbpBu/XQ0YCVbZUcyj/k51fOSK4u'
+                'Content-Type': 'application/json'
             }
         });
         if (!response.ok) throw new Error('Erro ao carregar dados: ' + response.statusText);
+        
         const data = await response.json();
-        estado = data.record; // Atualiza o estado com os dados carregados
+
+        // Acesse o primeiro objeto do array
+        estado = data[0]; // Altere esta linha para pegar o primeiro objeto do array
         
         // Chama a função para renderizar os dados
-        renderizarTodos(); // Adicione esta linha
+        renderizarTodos();
     } catch (error) {
         console.error('Erro ao carregar dados:', error);
     }
 }
 
-async function salvarDadosNoJSONBin() {
+async function salvarDadosNoMockAPI() {
     try {
-        const response = await fetch('https://api.jsonbin.io/v3/b/67d87de58561e97a50edfb77', {
+        const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/estado', {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
-                'X-Master-Key': '$2a$10$HQGRW2f7cor8XO9DyhyVo.ww1bbpBu/XQ0YCVbZUcyj/k51fOSK4u'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(estado)
         });
@@ -330,7 +331,7 @@ function responderDuvida(index) {
 
         estado.respostas[index].respostas = estado.respostas[index].respostas || [];
         estado.respostas[index].respostas.push(novaResposta);
-        salvarDadosNoJSONBin();
+        salvarDadosNoMockAPI();
         renderizarLista('respostas');
     }
 }
@@ -359,26 +360,14 @@ function criarCard(item, tipo, index) {
         `;
     }
 
-    if (modoEdicao) {
+    // Verifica se o usuário atual é o autor ou um editor
+    const usuarioAtual = obterUsuarioAtual(); // Função que retorna o usuário atual
+    const podeRemover = (item.autor === usuarioAtual || usuarioAtual === 'editor'); // Verifica se o autor é o usuário atual ou se é um editor
+
+    if (podeRemover) {
         conteudo += `  
             <button class="btn btn-sm btn-danger float-end" onclick="removerItem('${tipo}', ${index})">
             <i class="bi bi-trash"></i>
-            </button>
-        `;
-    }
-    if (document.body.classList.contains('modo-monitor') && tipo === 'monitoria') { 
-        conteudo += `
-            <button class="btn btn-sm btn-primary float-end" onclick="responderPergunta(${index})">
-                Responder
-            </button>
-            <button class="btn btn-sm btn-danger float-end" onclick="removerItem('${tipo}', ${index})">
- <i class="bi bi-trash"></i>
-            </button>
-        `;
-    } else if (tipo === 'monitoria') { 
-        conteudo += `
-            <button class="btn btn-sm btn-danger float-end" onclick="removerItem('${tipo}', ${index})">
-                <i class="bi bi-trash"></i>
             </button>
         `;
     }
@@ -386,6 +375,10 @@ function criarCard(item, tipo, index) {
     conteudo += '</div>';
     div.innerHTML = conteudo;
     return div;
+}
+
+function obterUsuarioAtual() {
+    return localStorage.getItem('usuarioAtual'); // Exemplo
 }
 
 function responderPergunta(index) {
@@ -404,7 +397,7 @@ function responderPergunta(index) {
         
         estado.monitoria[index].respostas = estado.monitoria[index].respostas || [];
         estado.monitoria[index].respostas.push(novaResposta);
-        salvarDadosNoJSONBin();
+        salvarDadosNoMockAPI();
         renderizarLista('monitoria');
     }
 }
@@ -519,7 +512,7 @@ async function salvarItem() {
         console.log("Novo item após processar arquivos:", novoItem);
         
         estado[tipoAtual].push(novoItem); // Adiciona uma única vez
-        await salvarDadosNoJSONBin(); // Salva no JSONBin
+        await salvarDadosNoMockAPI(); // Salva no JSONBin
         renderizarLista(tipoAtual); // Renderiza apenas uma vez
         modalItem.hide();
         botaoSalvar.disabled = false; // Reabilita o botão após o salvamento
@@ -560,7 +553,7 @@ function lerArquivo(file) {
 async function removerItem(tipo, index) {
     if (confirm('Tem certeza que deseja remover este item?')) {
         estado[tipo].splice(index, 1);
-        await salvarDadosNoJSONBin();
+        await salvarDadosNoMockAPI();
         renderizarLista(tipo);
     }
 }
@@ -575,28 +568,38 @@ function cancelarLogin() {
     document.getElementById('loginPanel').style.display = 'none'; // Oculta a tela de login
 }
 
+function filtrarLista() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.item-card');
+    items.forEach(item => {
+        const title = item.querySelector('.card-title').textContent.toLowerCase();
+        item.style.display = title.includes(input) ? '' : 'none';
+    });
+}
+
 async function acessar() {
     try {
-        const response = await fetch('https://api.jsonbin.io/v3/b/67db7e998561e97a50ef74cc', {
+        const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/usuarios', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'X-Master-Key': '$2a$10$HQGRW2f7cor8XO9DyhyVo.ww1bbpBu/XQ0YCVbZUcyj/k51fOSK4u'
+                'Content-Type': 'application/json'
             }
         });
         if (!response.ok) throw new Error('Erro ao carregar dados: ' + response.statusText);
+        
         const data = await response.json();
-        const usuarios = data.record.usuarios;
+        const usuarios = data; // A resposta já é um array de usuários
 
         const ra = document.getElementById('ra').value;
         const digito = document.getElementById('digito').value;
         const senha = document.getElementById('senha').value;
 
+        // Verifica se o usuário existe
         const usuario = usuarios.find(user => user.ra === ra && user.digito === digito && user.senha === senha);
         
         if (usuario) {
             cancelarLogin();
-            carregarDadosDoJSONBin(); // Carrega os dados após autenticação bem-sucedida
+            carregarDadosDoMockAPI(); // Carrega os dados após autenticação bem-sucedida
         } else {
             alert('RA, dígito ou senha incorretos. Tente novamente.');
         }
@@ -604,4 +607,5 @@ async function acessar() {
         console.error('Erro ao verificar acesso:', error);
     }
 }
-carregarDadosDoJSONBin();
+
+carregarDadosDoMockAPI();
