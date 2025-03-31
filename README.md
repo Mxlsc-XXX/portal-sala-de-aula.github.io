@@ -17,7 +17,7 @@ O Portal da Sala é uma plataforma onde você pode:
 - ❓ **Dúvidas do TarefasSP**: Faça perguntas e veja as respostas.
 - 👩‍🏫 **Monitoria**: Inscreva-se como monitor ou faça perguntas.
 
-![Welcome GIF](https://media.giphy.com/media/3o7aD2sa1g0g8g0g8I/giphy.gif)
+![Welcome GIF](https://www.icegif.com/wp-content/uploads/2023/07/icegif-489.gif)
 
 ---
 
