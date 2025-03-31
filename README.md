@@ -31,7 +31,7 @@ O Portal da Sala é uma plataforma onde você pode:
    - Use a barra de navegação no topo para acessar diferentes seções do portal.
    - Utilize a barra de busca para filtrar informações específicas.
 
-![Login GIF](https://media.giphy.com/media/3o7aD2sa1g0g8g0g8I/giphy.gif)
+![Login GIF](https://i.gifer.com/9X5b.gif)
 
 ---
 
@@ -42,8 +42,6 @@ O Portal da Sala é uma plataforma onde você pode:
 - **Modo Edição**: Após fazer login, você pode adicionar novos avisos, trabalhos, datas, apps, guias e planilhas.
 - Clique no botão "Adicionar" correspondente na seção desejada para abrir um formulário.
 - Preencha os campos necessários e clique em "Salvar".
-
-![Add Item GIF](https://media.giphy.com/media/3o7aD2sa1g0g8g0g8I/giphy.gif)
 
 ### Visualização
 
@@ -57,9 +55,7 @@ O Portal da Sala é uma plataforma onde você pode:
 ### Monitoria
 
 - Inscreva-se como monitor clicando no botão correspondente. Você será redirecionado para um formulário de inscrição.
-
-![Monitoria GIF](https://media.giphy.com/media/3o7aD2sa1g0g8g0g8I/giphy.gif)
-
+  
 ---
 
 ## Problemas Comuns
@@ -71,10 +67,14 @@ O Portal da Sala é uma plataforma onde você pode:
 
 ## Contato
 
-Se você tiver dúvidas ou sugestões, entre em contato com o administrador do portal.
+Se você tiver dúvidas ou sugestões, entre em contato com o administrador do portal (vulgo, Kauê kk).
 
 ---
 
-Aproveite o Portal da Sala e bons estudos! 🎓✨
+## Como eu fiz essa merda
 
-![Good Luck GIF](https://media.giphy.com/media/3o7aD2sa1g0g8g0g8I/giphy.gif)
+Se você por algum motivo absurdo tiver interesse em saber como eu fiz isso, é bem simples (mentira):
+Eu basicamente tive que aprender HTML, CSS e JS, com isso eu conectei todo o sistema do site em uma API que guarda todas as informações em um JSON (tá escondido, nem tenta pegar informação pae) e com toda a dor e sofrimento presente no planeta, eu terminei esse projeto, mais um pro portifólio, uhulll!
+
+![Coder GIF](https://i.gifer.com/3AyY.gif)
+
