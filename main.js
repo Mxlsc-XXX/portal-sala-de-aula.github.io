@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalItem = new bootstrap.Modal(document.getElementById('itemModal'));
     modalLogin = new bootstrap.Modal(document.getElementById('loginModal'));
     
+    
     // Verificar autenticação salva
     const autenticado = localStorage.getItem(CHAVE_AUTENTICACAO);
     if (autenticado === 'true') {
@@ -69,12 +70,43 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Elemento 'botaoRecarregar' não encontrado.");
     }
 
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+    
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            ripple.classList.add('ripple');
+    
+            this.appendChild(ripple);
+    
+            // Remove o efeito após a animação
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        });
+    });
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar-custom');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
     // Carregar dados do JSONBin ao iniciar
     carregarDadosDoMockAPI(); // Adicione esta linha
 });
 
 
 async function carregarDadosDoMockAPI() {
+    
     try {
         const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/estado', {
             method: 'GET',
@@ -97,7 +129,6 @@ async function carregarDadosDoMockAPI() {
 }
 
 async function salvarDadosNoMockAPI() {
-    console.log("Estado antes de salvar:", estado); // Para depuração
     try {
         const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/estado/1', {
             method: 'PUT', // ou 'PATCH' se preferir
@@ -223,6 +254,7 @@ function ativarModoEdicao() {
     const btnLogin = document.getElementById('btnLogin');
     btnLogin.classList.add('modo-edicao');
     btnLogin.innerHTML = '<i class="bi bi-key"></i> Sair do Modo Edição';
+    btnLogin.style.transform = 'scale(1)'; // Adicione esta linha
 }
 
 function desativarModoEdicao() {
@@ -236,6 +268,7 @@ function desativarModoEdicao() {
     const btnLogin = document.getElementById('btnLogin');
     btnLogin.classList.remove('modo-edicao');
     btnLogin.innerHTML = '<i class="bi bi-key"></i> Modo Edição';
+    btnLogin.style.transform = 'scale(1)'; // Adicione esta linha
     
     localStorage.removeItem(CHAVE_AUTENTICACAO);
 }
@@ -276,6 +309,7 @@ function renderizarTodos() {
 }
 
 function renderizarLista(tipo) {
+    
     const container = document.getElementById(`${tipo}-lista`);
     container.innerHTML = '';
 
@@ -366,25 +400,19 @@ function criarCard(item, tipo, index) {
         `;
     }
 
-    // Verifica se o usuário atual é o autor ou um editor
-    const usuarioAtual = obterUsuarioAtual(); // Função que retorna o usuário atual
-    const podeRemover = (item.autor === usuarioAtual || usuarioAtual === 'editor'); // Verifica se o autor é o usuário atual ou se é um editor
 
-    if (podeRemover) {
-        conteudo += `  
+    if (modoEdicao === true) {
+        conteudo += `
             <button class="btn btn-sm btn-danger float-end" onclick="removerItem('${tipo}', ${index})">
             <i class="bi bi-trash"></i>
             </button>
         `;
     }
 
+
     conteudo += '</div>';
     div.innerHTML = conteudo;
     return div;
-}
-
-function obterUsuarioAtual() {
-    return localStorage.getItem('usuarioAtual'); // Exemplo
 }
 
 function responderPergunta(index) {
@@ -474,7 +502,6 @@ function abrirModalItem() {
 }
 
 async function salvarItem() {
-    console.log("salvarItem chamado"); // Adicione esta linha
     const botaoSalvar = document.getElementById('botaoSalvar');
     botaoSalvar.disabled = true; // Desabilita o botão // Desabilita o botão
 
@@ -505,8 +532,6 @@ async function salvarItem() {
         respostas: [] // Inicializa a lista de respostas
     };
 
-    console.log("Novo item antes de processar arquivos:", novoItem);
-
     const processarArquivos = async () => {
         if (imagemInput.files[0]) {
             novoItem.imagem = await enviarImagemParaImgBB(imagemInput.files[0]);
@@ -515,7 +540,6 @@ async function salvarItem() {
             novoItem.arquivo = await lerArquivo(arquivoInput.files[0]);
         }
         
-        console.log("Novo item após processar arquivos:", novoItem);
         
         estado[tipoAtual].push(novoItem); // Adiciona uma única vez
         await salvarDadosNoMockAPI(); // Salva no JSONBin
@@ -574,15 +598,16 @@ function cancelarLogin() {
     document.getElementById('loginPanel').style.display = 'none'; // Oculta a tela de login
 }
 
+
 function filtrarLista() {
     const input = document.getElementById('searchInput').value.toLowerCase();
     const items = document.querySelectorAll('.item-card');
     items.forEach(item => {
         const title = item.querySelector('.card-title').textContent.toLowerCase();
-        item.style.display = title.includes(input) ? '' : 'none';
+        const descricao = item.querySelector('.card-text').textContent.toLowerCase(); // Adicione esta linha
+        item.style.display = title.includes(input) || descricao.includes(input) ? '' : 'none'; // Modifique esta linha
     });
 }
-
 async function acessar() {
     try {
         const response = await fetch('https://67e36b4b2ae442db76d00c2e.mockapi.io/api/v1/usuarios', {

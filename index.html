@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="#">PORTAL DA SALA</a>
-            <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="atualizarPagina()">
+            <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="carregarDadosDoMockAPI()">
                 <i class="bi bi-arrow-clockwise"></i>
             </button>
             <button class="btn btn-outline-light d-lg-none me-2" id="btnLoginMobile" onclick="abrirModalLogin()">
@@ -44,7 +44,7 @@
                         <a class="nav-link" href="#planilhas">Planilhas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light me-2" id="botaoRecarregar" onclick="atualizarPagina()">
+                <button class="btn btn-outline-light me-2" id="botaoRecarregar" onclick="carregarDadosDoMockAPI()">
                     <i class="bi bi-arrow-clockwise"></i> Recarregar
                 </button>
                 <button class="btn btn-outline-light d-lg-flex" id="btnLogin" onclick="abrirModalLogin()">
@@ -111,7 +111,7 @@
     <div class="container mt-4">
 
         <section id="avisos" class="mb-5">
-            <h2><i class="bi bi-megaphone"></i> Avisos</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-megaphone"></i> Avisos</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="avisos-lista">
@@ -123,9 +123,9 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="trabalhos" class="mb-5">
-            <h2><i class="bi bi-journal-text"></i> Trabalhos</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-journal-text"></i> Trabalhos</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="trabalhos-lista">
@@ -137,9 +137,9 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="datas" class="mb-5">
-            <h2><i class="bi bi-calendar-event"></i> Datas Importantes</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-calendar-event"></i> Datas Importantes</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="datas-lista">
@@ -151,9 +151,9 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="apps" class="mb-5">
-            <h2><i class="bi bi-phone"></i> Apps de Revisão</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-phone"></i> Apps de Revisão</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="apps-lista">
@@ -165,9 +165,9 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="guias" class="mb-5">
-            <h2><i class="bi bi-book"></i> Guias de Estudo</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-book"></i> Guias de Estudo</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="guias-lista">
@@ -179,9 +179,9 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="planilhas" class="mb-5">
-            <h2><i class="bi bi-table"></i> Planilhas das Aulas</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-table"></i> Planilhas das Aulas</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="planilhas-lista">
@@ -193,9 +193,9 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="respostas" class="mb-5">
-            <h2><i class="bi bi-check-circle"></i> Dúvidas do TarefasSP</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-check-circle"></i> Dúvidas do TarefasSP</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="respostas-lista">
@@ -208,7 +208,7 @@
         </section>
         
         <section id="monitoria" class="mb-5">
-            <h2><i class="bi bi-chat-dots"></i> Monitoria</h2>
+            <h2 class="text-red-to-green"><i class="bi bi-chat-dots"></i> Monitoria</h2>
             <div class="card">
                 <div class="card-body">
                     <div id="monitoria-lista">

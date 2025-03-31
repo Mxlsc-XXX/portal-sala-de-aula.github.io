@@ -11,7 +11,69 @@
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+#loginPanel{
+    background-color:rgba(255,15,15,0.34);
+    background-image:linear-gradient(88deg, rgb(255,0,0) 0%, #2e69a8 100%);
+   }
+   
+#ra{
+    background-color:rgba(255,255,255,0);
+   }
+   
+   /* Digito */
+#digito{
+    background-color:rgba(255,255,255,0);
+   }
+   
+   /* Senha */
+#senha{
+    background-color:rgba(255,255,255,0);
+   }
+#itemTitulo{
+    background-color:rgba(255,255,255,0);
+   }
+#itemDescricao{
+    background-color:rgba(255,255,255,0);
+   }
+#itemData{
+    background-color:rgba(255,255,255,0);
+   }
+#itemLink{
+    background-color:rgba(255,255,255,0);
+   }
+#itemImagem{
+    background-color:rgba(255,255,255,0);
+   }
+#itemArquivo{
+    background-color:rgba(255,255,255,0);
+   }
+#btnLogin {
+    width: 200px; /* Defina uma largura fixa */
+    height: 63px; /* Defina uma altura fixa */
+    padding: 0.5rem 1rem; /* Ajuste o padding conforme necessário */
+    transition: background-color 0.3s ease; /* Mantenha a transição apenas para a cor de fundo */
+    transform: none; /* Remove qualquer transformação ao ser clicado */
+}
+
+
 @media (prefers-color-scheme: dark) {
+    input[type="submit"] {
+        background: linear-gradient(135deg, #b92929, var(--primary-color));
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        background-color: #34495e; /* Cor de fundo escura */
+        color: var(--text-color); /* Cor do texto clara */
+        border: 2px solid #555; /* Borda escura */
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+        border-color: var(--primary-color); /* Cor da borda ao focar */
+        box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.5); /* Efeito de brilho ao focar */
+    }
     :root {
         /* Cores do tema escuro */
         --primary-color: #ff0303;
@@ -35,8 +97,6 @@ body {
     padding: 0;
 }
 
-/* O restante do seu CSS permanece o mesmo */
-
 /* Estilizando a barra de rolagem */
 ::-webkit-scrollbar {
     width: 12px; /* Largura da barra de rolagem */
@@ -53,12 +113,22 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #b92929; /* Cor ao passar o mouse */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efeito de brilho */
 }
 
 .navbar-custom {
     background: linear-gradient(to right, #8e0000, #2c3e50); /* Gradiente do vermelho escuro para o vermelho claro */
     padding: 1rem;
     border-radius: 0 8px 8px 8px;
+    transition: box-shadow 0.3s ease; /* Transição para sombra */
+}
+
+body {
+    position: relative; /* Para o efeito de sombra na navbar */
+}
+
+body.scrolled .navbar-custom {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra ao rolar */
 }
 
 section {
@@ -67,26 +137,37 @@ section {
     padding: 25px;
     box-shadow: var(--box-shadow);
     margin-bottom: 2rem;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), #2980b9);
+    color: #ffffff; /* Cor do texto do botão */
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.1); /* Leve mudança de cor ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card {
+    background-color: var(--card-background); /* Cor de fundo do card */
+    color: var(--text-color);
     border: none;
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Adicionando filter para brilho */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px) scale(1.02); /* Aumenta o tamanho ao passar o mouse */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta a sombra */
-    filter: brightness(1.05); /* Aumenta o brilho */
+    transform: translateY(-5px) scale(1.05); /* Aumenta o tamanho ao passar o mouse */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
 }
 
 .btn-primary {
@@ -95,14 +176,45 @@ section:hover {
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
     font-weight: 500;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Adicionando filter para brilho */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
     background: linear-gradient(135deg, #b92929, var(--primary-color));
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5); /* Efeito de brilho */
     transform: translateY(-2px) scale(1.05); /* Aumenta o tamanho ao passar o mouse */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta a sombra */
-    filter: brightness(1 .1); /* Aumenta o brilho */
+}
+
+.btn {
+    position: relative;
+    overflow: hidden; /* Para esconder o efeito de ondulação */
+    transition: background-color 0.3s ease, transform 0.3s ease;;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%; /* Tamanho do efeito de ondulação */
+    height: 300%; /* Tamanho do efeito de ondulação */
+    background: rgba(255, 255, 255, 0.6); /* Cor do efeito de ondulação */
+    border-radius: 50%; /* Forma circular */
+    transform: translate(-50%, -50%) scale(0); /* Começa invisível */
+    transition: transform 0.6s ease, opacity 0.6s ease; /* Transição suave */
+    pointer-events: none; /* Não interfere com eventos de clique */
+    opacity: 0; /* Começa invisível */
+}
+
+.btn:hover::after {
+    transform: translate(-50%, -50%) scale(1); /* Expande o efeito de ondulação */
+    opacity: 1; /* Torna visível */
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Cor de fundo ao passar o mouse */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3); /* Efeito de brilho */
+    transform: scale(1.05); /* Aumenta o tamanho ao passar o mouse */
 }
 
 .item-card {
@@ -111,7 +223,7 @@ section:hover {
     background: linear-gradient(to right, rgba(74, 144, 226, 0.05), transparent);
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Adicionando filter para brilho */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .item-card:hover {
@@ -121,6 +233,8 @@ section:hover {
 }
 
 .modal-content {
+    background-color:rgba(255,15,15,0.34);
+    background-image:linear-gradient(88deg, rgb(255,0,0) 0%, #2e69a8 100%);
     border-radius: var(--border-radius);
     border: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -136,7 +250,7 @@ section:hover {
 
 .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.5); /* Aumenta o brilho ao focar */
 }
 
 .arquivo-preview, .imagem-preview {
@@ -171,24 +285,50 @@ section:hover {
 
 #respostas h2, #monitoria h2 {
     color: var(--primary-color);
+    transition: color 0.3s ease; /* Transição suave para a cor */
 }
+
+#respostas h2:hover, #monitoria h2:hover {
+    color: var(--accent-color); /* Muda a cor ao passar o mouse */
+}
+#respostas-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
 
 .respostas-container {
     border-top: 1px solid #ddd;
+    border-radius: 15px;
     margin-top: 1rem;
     padding-top: 1rem;
 }
 
+/* Efeito de transição de cor */
+.text-red-to-green {
+    color: var(--danger-color); /* Cor inicial (vermelho) */
+    transition: color 0.3s ease; /* Transição suave */
+}
+
+.text-red-to-green:hover {
+    color: var(--accent-color); /* Cor final (verde) ao passar o mouse */
+}
+
+
 .resposta {
-    background-color: #f8f9fa;
+    background-color: rgb(44, 62, 80); /* Cor de fundo das respostas */
     border-radius: 5px;
     padding: 0.5rem;
     margin: 0.25rem 0;
+    color: #2c3e50; /* Cor do texto padrão (escura) */
 }
 
-.resposta small {
-    font-size: 0.8em;
-    color: var(--secondary-color);
+.resposta:hover {
+    color: #ffffff; /* Cor do texto ao passar o mouse */
+    background-color: var(--primary-color); /* Muda a cor de fundo ao passar o mouse */
 }
 
 .modo-monitor {
@@ -229,22 +369,31 @@ section:hover {
     text-transform: uppercase;
 }
 
-#searchInput{
-    border-top-left-radius:50px;
-    border-top-right-radius:50px;
-    border-bottom-left-radius:50px;
-    border-bottom-right-radius:50px;
-    background-color:rgba(255,255,255,0);
-    border-style:solid;
-    border-top-color:#a30000;
-    border-right-color:#1600a8;
-    border-bottom-color:#a30000;
-    border-left-color:#0006c1;
-    color:#ffffff;
-    font-weight:300;
-    font-size:16px;
-    line-height:1em;
-    text-transform:none;
-    text-shadow:rgb(255, 255, 255) 1px 1px 0px, rgb(170, 170, 170) 2px 2px 0px;
-   }
-   
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    background-color: #ffffff; /* Cor de fundo clara */
+    color: var(--text-color); /* Cor do texto */
+    border: 2px solid #ccc; /* Borda padrão */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 0.8rem; /* Espaçamento interno */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+#searchInput {
+    border-radius: 50px; /* Bordas arredondadas */
+    background-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a30000 #1600a8 #a30000 #0006c1; /* Cores das bordas */
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1em;
+    text-shadow: rgb(255, 255, 255) 1px 1px 0px, rgb(170, 170, 170) 2px 2px 0px;
+}
+
+/* Adicionei o efeito de brilho em todos os elementos */
+* {
+    transition: all 0.3s ease;
+}
