@@ -48,8 +48,6 @@
     background-color:rgba(255,255,255,0);
    }
 #btnLogin {
-    width: 200px; /* Defina uma largura fixa */
-    height: 63px; /* Defina uma altura fixa */
     padding: 0.5rem 1rem; /* Ajuste o padding conforme necessário */
     transition: background-color 0.3s ease; /* Mantenha a transição apenas para a cor de fundo */
     transform: none; /* Remove qualquer transformação ao ser clicado */
@@ -186,25 +184,13 @@ section:hover {
 }
 
 .btn {
-    position: relative;
-    overflow: hidden; /* Para esconder o efeito de ondulação */
-    transition: background-color 0.3s ease, transform 0.3s ease;;
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+    padding: 0.8rem 1.5rem; /* Ajuste o padding conforme necessário */
+    border-radius: 8px;
+    font-weight: 500;
 }
 
-.btn::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%; /* Tamanho do efeito de ondulação */
-    height: 300%; /* Tamanho do efeito de ondulação */
-    background: rgba(255, 255, 255, 0.6); /* Cor do efeito de ondulação */
-    border-radius: 50%; /* Forma circular */
-    transform: translate(-50%, -50%) scale(0); /* Começa invisível */
-    transition: transform 0.6s ease, opacity 0.6s ease; /* Transição suave */
-    pointer-events: none; /* Não interfere com eventos de clique */
-    opacity: 0; /* Começa invisível */
-}
+
 
 .btn:hover::after {
     transform: translate(-50%, -50%) scale(1); /* Expande o efeito de ondulação */
@@ -218,12 +204,24 @@ section:hover {
 }
 
 .item-card {
+    display: flex; /* Usar flexbox para alinhar a imagem e a descrição */
+    align-items: center; /* Alinha verticalmente ao centro */
     margin-bottom: 1.5rem;
     border-left: 5px solid var(--primary-color);
     background: linear-gradient(to right, rgba(74, 144, 226, 0.05), transparent);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.item-imagem {
+    max-width: 150px; /* Defina um tamanho máximo para a imagem */
+    margin-right: 1rem; /* Espaço entre a imagem e a descrição */
+    border-radius: 8px; /* Bordas arredondadas para a imagem */
+}
+
+.item-descricao {
+    flex: 1; /* Faz a descrição ocupar o espaço restante */
 }
 
 .item-card:hover {
@@ -397,3 +395,4 @@ input[type="email"] {
 * {
     transition: all 0.3s ease;
 }
+
