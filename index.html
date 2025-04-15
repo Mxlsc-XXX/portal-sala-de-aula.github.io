@@ -9,50 +9,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/5.0.1/bcrypt.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="#">PORTAL DA SALA</a>
-            <button class="btn btn-outline-light d-lg-none me-2" id="botaoRecarregar" onclick="carregarDadosDoMockAPI()">
-                <i class="bi bi-arrow-clockwise"></i>
-            </button>
-            <button class="btn btn-outline-light d-lg-none me-2" id="btnLoginMobile" onclick="abrirModalLogin()">
-                <i class="bi bi-key"></i>
-            </button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <input type="text" id="searchInput" placeholder="Buscar..." oninput="filtrarLista()">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#avisos">Avisos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#trabalhos">Trabalhos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#datas">Datas Importantes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#apps">Apps de Revisão</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#guias">Guias de Estudo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#planilhas">Planilhas</a>
-                    </li>
-                </ul>
-                <button class="btn btn-outline-light me-2" id="botaoRecarregar" onclick="carregarDadosDoMockAPI()">
-                    <i class="bi bi-arrow-clockwise"></i> Recarregar
-                </button>
-                <button class="btn btn-outline-light d-lg-flex" id="btnLogin" onclick="abrirModalLogin()">
-                    <i class="bi bi-key"></i> Modo Edição/Monitor
-                </button>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container">
+          <a class="navbar-brand" href="#">PORTAL DA SALA</a>
+          <button class="btn btn-outline-light me-2" id="botaoRecarregar" onclick="carregarDadosDoMockAPI()">
+              <i class="bi bi-arrow-clockwise"></i>
+          </button>
+          <button class="btn btn-outline-light me-2" id="btnLoginMobile" onclick="abrirModalLogin()">
+              <i class="bi bi-key"></i>
+          </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse" id="navbarNav"> <!-- Remover a classe collapse -->
+              <ul class="navbar-nav me-auto">
+                  <input type="text" id="searchInput" placeholder="Buscar..." oninput="filtrarLista()">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#avisos">Avisos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#trabalhos">Trabalhos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#datas">Datas Importantes</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#apps">Apps de Revisão</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#guias">Guias de Estudo</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#planilhas">Planilhas</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
 
     <!-- Modal de Login -->
     <div class="modal fade" id="loginModal" tabindex="-1">
