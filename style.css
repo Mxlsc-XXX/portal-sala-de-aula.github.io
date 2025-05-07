@@ -302,7 +302,7 @@ section:hover {
 
 /* Efeito de transição de cor */
 .text-red-to-green {
-    color: var(--danger-color); /* Cor inicial (vermelho) */
+    color: var(--primary-color); /* Cor inicial (vermelho) */
     transition: color 0.3s ease; /* Transição suave */
 }
 
