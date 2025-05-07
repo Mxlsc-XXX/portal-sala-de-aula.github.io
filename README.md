@@ -1,80 +1,97 @@
-# 🎉 README.md - Portal da Sala 🎉
+# 🎉 Portal da Sala - O QG da Turma 🎉
 
-Bem-vindos ao **Portal da Sala**! Este site foi criado para facilitar a comunicação e o compartilhamento de informações entre os alunos. Aqui está um guia simples sobre como usar o site.
+![Made with Love](https://img.shields.io/badge/Made%20with-💖%20e%20Café-brightgreen)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)
+![Visitors](https://komarev.com/ghpvc/?username=PortalSala&color=blue)
 
----
-
-## Visão Geral
-
-O Portal da Sala é uma plataforma onde você pode:
-
-- 📢 **Ver Avisos**: Fique por dentro das últimas notícias e avisos importantes.
-- 📚 **Consultar Trabalhos**: Acesse informações sobre trabalhos e suas datas de entrega.
-- 📅 **Datas Importantes**: Confira as datas de provas e eventos importantes.
-- 📱 **Apps de Revisão**: Encontre aplicativos úteis para ajudar nos estudos.
-- 📖 **Guias de Estudo**: Acesse materiais de estudo e guias.
-- 📊 **Planilhas**: Visualize planilhas relacionadas às aulas.
-- ❓ **Dúvidas do TarefasSP**: Faça perguntas e veja as respostas.
-- 👩‍🏫 **Monitoria**: Inscreva-se como monitor ou faça perguntas.
-
-![Welcome GIF](https://www.icegif.com/wp-content/uploads/2023/07/icegif-489.gif)
+Bem-vindo ao **Portal da Sala**, o lugar onde a galera da turma se organiza, compartilha info e sobrevive ao caos escolar juntos.  
+Feito pra deixar a rotina mais fácil, menos corrida e (talvez) até mais divertida!
 
 ---
 
-## Como Acessar
+## 📌 O que dá pra fazer por aqui
 
-1. **Login**: 
-   - Clique no botão "Modo Edição/Monitor" para acessar o modo de edição.
-   - Insira seu **RA**, **dígito** e **senha** para fazer login.
-
-2. **Navegação**:
-   - Use a barra de navegação no topo para acessar diferentes seções do portal.
-   - Utilize a barra de busca para filtrar informações específicas.
-
-![Login GIF](https://i.gifer.com/9X5b.gif)
-
----
-
-## Funcionalidades
-
-### Adicionar Itens
-
-- **Modo Edição**: Após fazer login, você pode adicionar novos avisos, trabalhos, datas, apps, guias e planilhas.
-- Clique no botão "Adicionar" correspondente na seção desejada para abrir um formulário.
-- Preencha os campos necessários e clique em "Salvar".
-
-### Visualização
-
-- Todos os itens adicionados serão exibidos nas respectivas seções.
-- Você pode visualizar detalhes, links e arquivos relacionados a cada item.
-
-### Responder Dúvidas
-
-- Na seção de Dúvidas do TarefasSP, você pode fazer perguntas e responder a perguntas de outros usuários.
-
-### Monitoria
-
-- Inscreva-se como monitor clicando no botão correspondente. Você será redirecionado para um formulário de inscrição.
-  
----
-
-## Problemas Comuns
-
-- ⚠️ **Erro ao Carregar Dados**: Se você encontrar um erro ao carregar dados, pode ser que a conexão com a API esteja temporariamente indisponível. Tente recarregar a página.
-- ❌ **Código de Acesso Incorreto**: Verifique se você digitou corretamente seu código de acesso.
+- 📢 **Avisos**: Fique por dentro das tretas importantes (sem precisar perguntar no grupo toda hora).
+- 📚 **Trabalhos**: Veja o que tem pra entregar (e evite zeros).
+- 📅 **Provas & Datas**: Organize-se e não estude em cima da hora (ou estude, mas com estilo).
+- 📱 **Apps de Revisão**: Dê aquele gás nos estudos com apps daora.
+- 📖 **Guias de Estudo**: Ajudas extras pra salvar sua nota.
+- 📊 **Planilhas da Galera**: Tabelas úteis sobre o que rola na aula.
+- ❓ **Dúvidas (TarefasSP)**: Pergunte, responda e salve a pele do colega.
+- 👩‍🏫 **Monitoria**: Vire monitor ou peça ajuda sem precisar implorar no Whats.
 
 ---
 
-## Contato
-
-Se você tiver dúvidas ou sugestões, entre em contato com o administrador do portal (vulgo, Kauê kk).
+![Welcome](https://www.icegif.com/wp-content/uploads/2023/07/icegif-489.gif)
 
 ---
 
-## Como eu fiz essa merda
+## 🚀 Como usar
 
-Se você por algum motivo absurdo tiver interesse em saber como eu fiz isso, é bem simples (mentira):
-Eu basicamente tive que aprender HTML, CSS e JS, com isso eu conectei todo o sistema do site em uma API que guarda todas as informações em um JSON (tá escondido, nem tenta pegar informação pae) e com toda a dor e sofrimento presente no planeta, eu terminei esse projeto, mais um pro portifólio, uhulll!
+### 🔐 Login
+- Clique em **"Modo Edição/Monitor"**.
+- Coloque seu **RA**, **dígito** e **senha**.
+- Acesso liberado, jovem padawan.
 
-![Coder GIF](https://i.gifer.com/3AyY.gif)
+### 🔍 Navegação
+- Use o menu no topo pra ir de boas entre as seções.
+- Tem barra de busca também (sim, é chique).
 
+![Login](https://i.gifer.com/9X5b.gif)
+
+---
+
+## 🛠️ Funcionalidades
+
+### ➕ Adicionar Coisas
+- No modo edição, dá pra:
+  - Postar avisos
+  - Cadastrar trabalhos
+  - Adicionar datas de prova/evento
+  - Subir apps, guias e planilhas
+- Clicou no botão "Adicionar"? Preencheu? Salvou? Pronto.
+
+### 👀 Ver Conteúdo
+- Tudo que for postado aparece nas seções certinhas.
+- Tem links, descrições, arquivos... o pacote completo.
+
+### 💬 Tirar Dúvidas
+- Seção especial pra perguntas/respostas no estilo Stack Overflow escolar.
+
+### 🎓 Monitoria
+- Se voluntarie como monitor ou peça ajuda academicamente falando.
+
+---
+
+## 🧯 Problemas Comuns
+
+| Problema | O que fazer |
+|---------|-------------|
+| ⚠️ Erro ao carregar dados | Pode ser a API tirando um cochilo. Dá um F5 e tenta de novo. |
+| ❌ Código de acesso errado | Confere se digitou tudo certinho. O sistema é exigente. |
+
+---
+
+## 📬 Fale Comigo
+
+Tá com bug? Sugestão? Só quer elogiar o criador?  
+Fala direto com o admin do portal (aka **Kauê, o grande**, ou só "eu", se você for eu lendo isso kkk).
+
+---
+
+## 🧪 Como eu fiz essa parada
+
+Se por alguma razão maluca você quiser saber como isso foi feito, se liga:
+
+> Aprendi na marra HTML, CSS, JS e conectei tudo com uma API que guarda infos num JSON escondido no fundo do abismo (não tenta hackear, seu curioso).  
+> Foram litros de chá, surtos, e agora tá aqui: pronto, funcionando e estiloso.  
+> Mais um projeto pro portifa, mais uma vitória da resistência estudantil.
+
+![Coding](https://i.gifer.com/3AyY.gif)
+
+---
+
+## ⭐ Dá uma moral!
+
+Se achou daora, **dá uma estrela no repositório** 🌟  
+Valeu por usar o Portal, e tamo junto!  
