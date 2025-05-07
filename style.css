@@ -1,20 +1,20 @@
 :root {
-    /* Cores do tema claro */
-    --primary-color: #ff0303;
+    /* Cores do tema com gradiente roxo para azul */
+    --primary-color: #6a0dad; /* Roxo */
     --secondary-color: #000000;
     --background-color: #afafaf; /* Cor de fundo clara */
     --card-background: #d3d3d3; /* Cor de fundo do card clara */
-    --accent-color: #2ecc71;
+    --accent-color: #3439db; /* Azul */
     --danger-color: #e74c3c;
     --text-color: #2c3e50; /* Cor do texto clara */
     --border-radius: 12px;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#loginPanel{
-    background-color:rgba(255,15,15,0.34);
-    background-image:linear-gradient(88deg, rgb(255,0,0) 0%, #2e69a8 100%);
-   }
+
+#loginPanel {
+    background: linear-gradient(88deg, #6a0dad 0%, #3439db 100%);
+}
    
 #ra{
     background-color:rgba(255,255,255,0);
@@ -56,7 +56,19 @@
 
 @media (prefers-color-scheme: dark) {
     input[type="submit"] {
-        background: linear-gradient(135deg, #b92929, var(--primary-color));
+        background: linear-gradient(135deg, #6a0dad, var(--primary-color));
+    }
+    :root {
+        /* Cores do tema escuro */
+        --primary-color: #6a0dad; /* Roxo */
+        --secondary-color: #ffffff; /* Texto claro */
+        --background-color: #2c3e50; /* Cor de fundo escura */
+        --card-background: #34495e; /* Cor de fundo do card escura */
+        --accent-color: #3439db; /* Azul */
+        --danger-color: #e74c3c;
+        --text-color: #ecf0f1; /* Cor do texto clara */
+        --border-radius: 12px;
+        --box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
     }
     input[type="text"],
     input[type="password"],
@@ -71,18 +83,6 @@
     input[type="email"]:focus {
         border-color: var(--primary-color); /* Cor da borda ao focar */
         box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.5); /* Efeito de brilho ao focar */
-    }
-    :root {
-        /* Cores do tema escuro */
-        --primary-color: #ff0303;
-        --secondary-color: #ffffff; /* Texto claro */
-        --background-color: #2c3e50; /* Cor de fundo escura */
-        --card-background: #34495e; /* Cor de fundo do card escura */
-        --accent-color: #2ecc71;
-        --danger-color: #e74c3c;
-        --text-color: #ecf0f1; /* Cor do texto clara */
-        --border-radius: 12px;
-        --box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
     }
 }
 
@@ -100,22 +100,17 @@ body {
     width: 12px; /* Largura da barra de rolagem */
 }
 
-::-webkit-scrollbar-track {
-    background: #000; /* Cor do fundo da barra de rolagem */
-}
-
 ::-webkit-scrollbar-thumb {
-    background: #ff0303; /* Cor da parte que pode ser arrastada */
-    border-radius: 6px; /* Bordas arredondadas */
+    background: linear-gradient(135deg, #6a0dad, #3439db);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #b92929; /* Cor ao passar o mouse */
+    background: #8000d0; /* Cor ao passar o mouse */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efeito de brilho */
 }
 
 .navbar-custom {
-    background: linear-gradient(to right, #8e0000, #2c3e50); /* Gradiente do vermelho escuro para o vermelho claro */
+    background: linear-gradient(to right, #6a0dad, #3439db); /* Gradiente do vermelho escuro para o vermelho claro */
     padding: 1rem;
     border-radius: 0 8px 8px 8px;
     transition: box-shadow 0.3s ease; /* Transição para sombra */
@@ -169,7 +164,7 @@ section:hover {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), #2980b9);
+    background: linear-gradient(135deg, var(--primary-color), #3439db);
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
@@ -178,7 +173,7 @@ section:hover {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #b92929, var(--primary-color));
+    background: linear-gradient(135deg, #5e2c8f, var(--primary-color));
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5); /* Efeito de brilho */
     transform: translateY(-2px) scale(1.05); /* Aumenta o tamanho ao passar o mouse */
 }
@@ -232,7 +227,7 @@ section:hover {
 
 .modal-content {
     background-color:rgba(255,15,15,0.34);
-    background-image:linear-gradient(88deg, rgb(255,0,0) 0%, #2e69a8 100%);
+    background-image:linear-gradient(88deg, #6a0dad, #3439db);
     border-radius: var(--border-radius);
     border: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
