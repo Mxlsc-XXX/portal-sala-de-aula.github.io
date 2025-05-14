@@ -28,10 +28,10 @@ Feito pra deixar a rotina mais fácil, menos corrida e (talvez) até menos pior.
 
 ## 🚀 Como usar
 
-### 🔐 Login
+### 🔐 Login ao modo de edição ou monitoria
 - Clique em **"Modo Edição/Monitor"**.
 - Coloque seu **RA**, **dígito** e **senha**.
-- Acesso liberado, jovem padawan.
+- Acesso liberado.
 
 ### 🔍 Navegação
 - Use o menu no topo pra ir de boas entre as seções.
@@ -75,7 +75,7 @@ Feito pra deixar a rotina mais fácil, menos corrida e (talvez) até menos pior.
 ## 📬 Fale Comigo
 
 Tá com bug? Sugestão? Só quer elogiar o criador?  
-Fala direto com o admin do portal (aka **Kauê, o grande**, ou só "eu", se você for eu lendo isso kkk).
+Fala direto com o admin do portal (aka **Kauê**, ou só "eu", se você for eu lendo isso kkk).
 
 ---
 
@@ -84,8 +84,8 @@ Fala direto com o admin do portal (aka **Kauê, o grande**, ou só "eu", se voc�
 Se por alguma razão maluca você quiser saber como isso foi feito, se liga:
 
 > Aprendi na marra HTML, CSS, JS e conectei tudo com uma API que guarda infos num JSON escondido no fundo do abismo (não tenta hackear, seu curioso).  
-> Foram litros de chá, surtos, e agora tá aqui: pronto, funcionando e estiloso.  
-> Mais um projeto pro portifa, mais uma vitória da resistência estudantil.
+> Foram diversos surtos mas agora tá aqui: pronto, funcionando e estiloso.  
+> Mais um projeto pro portifa.
 
 ![Coding](https://i.gifer.com/3AyY.gif)
 
