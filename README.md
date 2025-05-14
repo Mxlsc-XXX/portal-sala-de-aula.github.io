@@ -5,7 +5,7 @@
 ![Visitors](https://komarev.com/ghpvc/?username=PortalSala&color=blue)
 
 Bem-vindo ao **Portal da Sala**, o lugar onde a galera da turma se organiza, compartilha info e sobrevive ao caos escolar juntos.  
-Feito pra deixar a rotina mais fácil, menos corrida e (talvez) até mais divertida!
+Feito pra deixar a rotina mais fácil, menos corrida e (talvez) até menos pior.
 
 ---
 
